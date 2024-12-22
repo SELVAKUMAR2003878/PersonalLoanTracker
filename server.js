@@ -36,17 +36,18 @@ app.use('/api/loans', loanRoutes);
 
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
 */
-
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
 const loanRoutes = require('./routes/loanRoutes');
+require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const MONGO_URL = `mongodb://0.0.0.0:27017/loan-tracker`;
 
 // Connect to MongoDB
-mongoose.connect('mongodb://0.0.0.0:27017/loan-tracker', {
+mongoose.connect(MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
