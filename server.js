@@ -48,8 +48,7 @@ const MONGO_URL = `mongodb+srv://selva123:selva123@cluster0.nryst.mongodb.net/?r
 
 // Connect to MongoDB
 mongoose.connect(MONGO_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
+
 })
     .then(() => {
         console.log("MongoDB connected");
@@ -68,3 +67,23 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use('/api/loans', loanRoutes);
 
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+
+
+/*
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+
+dotenv.config();
+
+mongoose.connect(process.env.MONGODB_URI, {
+  // Remove useNewUrlParser and useUnifiedTopology options
+});
+
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', () => {
+  console.log('Connected to MongoDB Atlas');
+});
+
+module.exports = db;
+*/
