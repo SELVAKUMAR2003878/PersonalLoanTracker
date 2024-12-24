@@ -23,7 +23,7 @@ document.getElementById("btn1").onclick = function() {
     const form = document.getElementById("form");
     const Name = document.getElementById("Name"); // Ensure the ID matches the form element
     const loanAmount = document.getElementById("loanAmount");
-    if (Name.value == null || Name.value == "" || loanAmount.value == null || loanAmount.value == 0 || loanAmount.value == "" || loanAmount.value < 0) {
+    if (Name.value.trim() == null || Name.value.trim() == "" || loanAmount.value == null || loanAmount.value == 0 || loanAmount.value == "" || loanAmount.value < 0) {
         window.alert("Enter the details");
     } else {
         Savefunction(Name.value.toUpperCase().trim(), loanAmount.value);
@@ -48,7 +48,7 @@ function Remove(event) {
     let parentName = `${parentdataForm}`;
     console.log(parentName);
     console.log(event.target.parentElement.textContent);
-    Erase(parentName);
+    Erase(parentName.trim());
 }
 const RepayPopup = document.getElementById("RepayPopup");
 
@@ -101,7 +101,7 @@ function saveRepay(event) {
         
         historyText = `Date:${day}/${month + 1}/${year} on ${RepayAmount.value} rupees Received,`;
         console.log(RepayName);
-        updateLoanAmount(RepayName, NewValue , historyText);
+        updateLoanAmount(RepayName.trim(), NewValue , historyText);
 
         HistoryDiv.innerHTML += `Date:${day}/${month + 1}/${year} on ${RepayAmount.value} rupees Received<br><br>`;
         RepayForm.reset();
@@ -181,7 +181,7 @@ async function Savefunction(name , loanAmount) {
     let dateValue = `${day}/${month + 1}/${year}`;
 
     console.log(remainingAmount);
-    if (name == null || name === "" || loanAmount == null || loanAmount === "" || loanAmount <= 0) {
+    if (name.trim() == null || name.trim() === "" || loanAmount == null || loanAmount === "" || loanAmount <= 0) {
         console.error('Invalid input values');
         return;
     }
