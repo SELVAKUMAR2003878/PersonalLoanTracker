@@ -64,7 +64,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
 // Routes
-app.use('/api/loans', loanRoutes);
+//https://personalloantracker.onrender.com/api/loans
+app.use(process.env.API_URL, loanRoutes);
 
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
 
