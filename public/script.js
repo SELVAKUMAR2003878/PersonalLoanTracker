@@ -26,7 +26,7 @@ document.getElementById("btn1").onclick = function() {
     if (Name.value == null || Name.value == "" || loanAmount.value == null || loanAmount.value == 0 || loanAmount.value == "" || loanAmount.value < 0) {
         window.alert("Enter the details");
     } else {
-        Savefunction(Name.value.toUpperCase(), loanAmount.value);
+        Savefunction(Name.value.toUpperCase().trim(), loanAmount.value);
         RemainingAmount = loanAmount.value;
         newDiv = document.createElement("div");
         newDiv.innerHTML = `<div class="viewpart"><h1>Name: ${(Name.value).toUpperCase()}</h1><br><h3>Loan Amount:${loanAmount.value}</h3><br><h2 class="Amount">Remaining Amount:${RemainingAmount}</h2><br><h3>Date:${day}/${month + 1}/${year}</h3><br><button class="repayBtn" onclick="Repay(event , EventHandler)">Repay</button><button class="deletebtn" onclick="Remove(event)">Delete</button><br><h3 id="hty">History</h3><br><div id="History"></div></div>`;
