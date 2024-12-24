@@ -100,7 +100,8 @@ router.put('/:name', async (req, res) => {
         }
 
         // Find the loan by name
-        const loan = await Loan.findOne({ name: req.params.name.toUpperCase() });
+        const loan = await Loan.findOne({ name: req.params.name});
+        console.log(req.params.name);
         if (!loan) return res.status(404).json({ error: 'Loan not found' });
 
         // Append the new history entry to the existing history
@@ -121,7 +122,8 @@ router.put('/:name', async (req, res) => {
 // Delete loan
 router.delete('/:name', async (req, res) => {
     try {
-        const loan = await Loan.findOneAndDelete({ name: req.params.name.toUpperCase() });
+      console.log(req.params.name);
+        const loan = await Loan.findOneAndDelete({ name: req.params.name});
         if (!loan) return res.status(404).json({ error: 'Loan not found' });
         res.status(200).json({ message: 'Loan deleted successfully' });
     } catch (error) {

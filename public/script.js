@@ -252,8 +252,6 @@ async function updateLoanAmount(name, newLoanAmount, history) {
     }
 }
 
-
-
 // Initialize
 document.addEventListener("DOMContentLoaded", () => {
     fetchLoanCount();
