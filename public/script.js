@@ -115,7 +115,7 @@ const loanForm = document.getElementById('form');
 const loanList = document.getElementById('load');
 
 // API Base URL
-const APIURL = 'https://personalloantracker.onrender.com/api/loans';
+const APIURL = '/api/loans';
 
 // Fetch and display the count of loans
 async function fetchLoanCount() {
@@ -187,7 +187,7 @@ async function Savefunction(name , loanAmount) {
     const loanData = { name, loanAmount, remainingAmount, dateValue, history: "" };
 
     try {
-        const response = await fetch(APIURL, {
+        const response = await fetch('/api/loans', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(loanData)
@@ -207,7 +207,7 @@ async function Savefunction(name , loanAmount) {
 async function Erase(name) {
     console.log(name);
     try {
-        const response = await fetch(`${APIURL}/${name}`, {
+        const response = await fetch(`/api/loans/${name}`, {
             method: 'DELETE'
         });
         if (response.ok) {
@@ -234,7 +234,7 @@ async function updateLoanAmount(name, newLoanAmount, history) {
     const dateValue = `${day}/${month + 1}/${year}`;
 
     try {
-        const response = await fetch(`${APIURL}/${name}`, {
+        const response = await fetch(`/api/loans/${name}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ remainingAmount: parseFloat(newLoanAmount), history, dateValue })
