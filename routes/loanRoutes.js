@@ -75,9 +75,9 @@ router.get('/', async (req, res) => {
 
 
 // Get a single loan by ID
-router.get('/:id', async (req, res) => {
+router.get('/:name', async (req, res) => {
   try {
-    const loan = await Loan.findById(req.params.Name);
+    const loan = await Loan.findById(req.params.name);
     if (!loan) return res.status(404).json({ error: 'Loan not found' });
     res.status(200).json(loan);
     console.log(loan);
@@ -87,47 +87,49 @@ router.get('/:id', async (req, res) => {
 });
 
 
-// Update a loan amount by name
+
+// Update loan amount by name 
 router.put('/:name', async (req, res) => {
-  try {
-    const { remainingAmount, history, dateValue } = req.body;
-    console.log(`remainingAmount: ${remainingAmount}`);
-    console.log(`history: ${history}`);
-    console.log(`dateValue: ${dateValue}`);
-    if (remainingAmount == null) {
-      return res.status(400).json({ error: 'Remaining amount is required' });
+    try {
+        const { remainingAmount, history, dateValue } = req.body;
+        console.log(`remainingAmount: ${remainingAmount}`);
+        console.log(`history: ${history}`);
+        console.log(`dateValue: ${dateValue}`);
+        if (remainingAmount == null) {
+            return res.status(400).json({ error: 'Remaining amount is required' });
+        }
+
+        // Find the loan by name
+        const loan = await Loan.findOne({ name: req.params.name.toUpperCase() });
+        if (!loan) return res.status(404).json({ error: 'Loan not found' });
+
+        // Append the new history entry to the existing history
+        const updatedHistory = loan.history ? `${loan.history}\n${history}` : history;
+
+        // Update the loan with the new remainingAmount, updatedHistory, and dateValue
+        loan.remainingAmount = remainingAmount;
+        loan.history = updatedHistory;
+        loan.dateValue = dateValue;
+        await loan.save();
+
+        res.status(200).json(loan);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
     }
-
-    // Find the loan by name
-    const loan = await Loan.findOne({ name: req.params.name.toUpperCase() });
-    if (!loan) return res.status(404).json({ error: 'Loan not found' });
-
-    // Append the new history entry to the existing history
-    const updatedHistory = loan.history ? `${loan.history}\n${history}` : history;
-
-    // Update the loan with the new remainingAmount, updatedHistory, and dateValue
-    loan.remainingAmount = remainingAmount;
-    loan.history = updatedHistory;
-    loan.dateValue = dateValue;
-    await loan.save();
-
-    res.status(200).json(loan);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
 });
 
-
-// Delete a loan by name
+// Delete loan
 router.delete('/:name', async (req, res) => {
-  try {
-    const loan = await Loan.findOneAndDelete({ name: req.params.name.toUpperCase() });
-    if (!loan) return res.status(404).json({ error: 'Loan not found' });
-    res.status(200).json({ message: 'Loan deleted successfully' });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
+    try {
+        const loan = await Loan.findOneAndDelete({ name: req.params.name.toUpperCase() });
+        if (!loan) return res.status(404).json({ error: 'Loan not found' });
+        res.status(200).json({ message: 'Loan deleted successfully' });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
 });
+
+
 var count = 0;
 
 module.exports = count;
