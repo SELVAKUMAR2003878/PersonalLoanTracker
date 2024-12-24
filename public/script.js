@@ -114,8 +114,10 @@ function saveRepay(event) {
 const loanForm = document.getElementById('form');
 const loanList = document.getElementById('load');
 
+//const APIURL = 'https://personalloantracker.onrender.com/api/loans';
+
 // API Base URL
-const APIURL = '/api/loans';
+const APIURL = 'https://personalloantracker.onrender.com/api/loans';
 
 // Fetch and display the count of loans
 async function fetchLoanCount() {
