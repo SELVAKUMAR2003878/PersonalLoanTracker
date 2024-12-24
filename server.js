@@ -44,7 +44,7 @@ require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const MONGO_URL = `mongodb://0.0.0.0:27017/loan-tracker`;
+const MONGO_URL = `mongodb+srv://selva123:selva123@cluster0.nryst.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 
 // Connect to MongoDB
 mongoose.connect(MONGO_URL, {
