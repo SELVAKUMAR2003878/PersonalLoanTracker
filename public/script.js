@@ -15,7 +15,8 @@ function newPerson() {
 }
 
 //save function
-document.getElementById("btn1").onclick = function() {
+document.getElementById("btn1").onclick = function(e) {
+    e.preventDefault();
     const date = new Date();
     const year = date.getFullYear();
     const month = date.getMonth();
@@ -79,6 +80,7 @@ const saveRepayBtn = document.getElementById("saveRepayBtn");
 
 
 function saveRepay(event) {
+    event.preventDefault();
     const date = new Date();
     const year = date.getFullYear();
     const month = date.getMonth();
