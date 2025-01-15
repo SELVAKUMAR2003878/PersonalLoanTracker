@@ -141,7 +141,7 @@ body {
 #RepayForm {
     background-color: white;
     width:200px;
-    height: 150px;
+    height: auto;
     margin: auto;
     position: sticky;
     top:100px;
