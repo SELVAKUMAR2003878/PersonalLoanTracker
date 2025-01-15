@@ -9,7 +9,8 @@ body {
 #popup {
     width:100%;    
     background-color: black;
-    height: 100%;
+    min-height:100vmax;
+    max-height: auto;
     z-index: 2;
     position: absolute;
     text-align: center;
@@ -33,6 +34,8 @@ body {
     font-size: 1.4em;
     font-weight: bold;
     text-align: center;
+    position: sticky;
+    top:100px;
     margin-top: 50px;
 
 }
@@ -74,9 +77,10 @@ body {
     border-radius: 100%;
     font-weight: bold;
     background-color: rgb(0, 181, 231);
-    position: absolute;
-    right: 30px;
-    bottom:30px;
+    position:fixed;
+    top:80%;
+    z-index:6;
+    left:90%;
     color:white;
     cursor:pointer;
 }
@@ -123,7 +127,7 @@ body {
 #RepayPopup {
     width:100%;    
     background-color: black;
-    height: 100%;
+    height: 100vmax;
     z-index: 2;
     position: absolute;
     text-align: center;
@@ -139,6 +143,8 @@ body {
     width:200px;
     height: 150px;
     margin: auto;
+    position: sticky;
+    top:100px;
     border-radius: 10px;
     font-size: 1.4em;
     font-weight: bold;
